@@ -1,80 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import router components
-import Navbar from './components/NavBar'; // Navbar remains the same
-import HeroSection from './components/Herosection'; // HeroSection remains the same
-import ServicesSection from './components/Testimonials'; // ServicesSection remains the same
-import Footer from './components/Footer'; // Footer remains the same
-import WeServeSection from './components/Specials'; // WeServeSection remains the same
-import BookingSection from './BookingSection/BookingSection'; // BookingSection
-import About from './components/About'; // Import the new About component
-import Menu from './components/Menu'; // Import Menu Component
-import Login from './components/Login'; // Import Login Component
-import Loader from './components/Loader'; // Import Loader Component
-import './App.css'; // Import the main styles
+// At the top of your App.js, update the imports
+import React, { useState, useEffect, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
+// Regular imports for core components
+import Navbar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
+import Loader from './components/Loader/Loader';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import OfflineMessage from './components/OfflineMessage/OfflineMessage';
+import NotFound from './components/NotFound/NotFound';
+import './App.css';
+
+// Lazy loaded page components
+const HomePage = React.lazy(() => import('./pages/HomePage/HomePage'));
+const Menu = React.lazy(() => import('./components/Menu/Menu'));
+const About = React.lazy(() => import('./components/About/About'));
+const BookingSection = React.lazy(() => import('./BookingSection/BookingSection'));
+const Login = React.lazy(() => import('./components/Login/Login'));
+
+// Rest of your App.js code remains the same
 function App() {
-  const [isLoading, setIsLoading] = useState(true); // Handle loading state
-  const [setShowBooking] = useState(false); // Handle booking section visibility
+  const [isLoading, setIsLoading] = useState(true);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
-    // Simulate loading process
-    const timer = setTimeout(() => {
-      setIsLoading(false); // Set loading to false after 3 seconds
-    }, 2000);
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
 
-    return () => clearTimeout(timer); // Cleanup the timer
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    // Simulate initial loading
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+      clearTimeout(timer);
+    };
   }, []);
 
-  const handleBookingButtonClick = () => {
-    setShowBooking(true); // When booking button is clicked, show the booking section
-  };
+  if (!isOnline) {
+    return <OfflineMessage />;
+  }
 
   if (isLoading) {
-    // Render loader while loading
     return <Loader />;
   }
 
   return (
-    <div className="App" style={{ fontFamily: 'Karla, sans-serif' }}>
-      {/* Wrap the app in Router */}
-      <Router>
-        {/* Navbar - always visible */}
-        <Navbar />
+    <ErrorBoundary>
+      <Router basename="/">
+        <div className="app-container">
+          <Navbar />
+          
+          <main className="main-content">
+            <Suspense fallback={<Loader />}>
+              <AnimatePresence mode="wait">
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/menu" element={<Menu />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/reservations" element={<BookingSection />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/LittleLemon" element={<Navigate to="/" replace />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </AnimatePresence>
+            </Suspense>
+          </main>
 
-        {/* Conditionally render sections */}
-        <Routes>
-          {/* Homepage - Updated to render the Homepage component */}
-          <Route
-            path="/"
-            element={
-              <>
-                {/* Hero Section with "Book a Table" Button */}
-                <HeroSection onBookTableClick={handleBookingButtonClick} />
-                {/* Static sections */}
-                <WeServeSection />
-                <About />
-                <ServicesSection />
-              </>
-            }
-          />
-
-          {/* Menu Page */}
-          <Route path="/menu" element={<Menu />} />
-
-          {/* About Page */}
-          <Route path="/about" element={<About />} />
-
-          {/* Reservations Page */}
-          <Route path="/reservations" element={<BookingSection />} />
-
-          {/* Login Page */}
-          <Route path="/login" element={<Login />} />
-        </Routes>
-
-        {/* Footer - always visible */}
-        <Footer />
+          <Footer />
+        </div>
       </Router>
-    </div>
+    </ErrorBoundary>
   );
 }
 

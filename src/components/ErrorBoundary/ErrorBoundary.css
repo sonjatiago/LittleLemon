@@ -1,0 +1,75 @@
+/* src/components/ErrorBoundary.css */
+.error-boundary {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.error-content {
+    text-align: center;
+    max-width: 500px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.error-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #ff5c5c;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0 auto 24px;
+}
+
+.error-content h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+.error-content p {
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.reload-button {
+    padding: 12px 24px;
+    background-color: #2e5c47;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reload-button:hover {
+    background-color: #25683e;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .error-content {
+        padding: 24px;
+    }
+
+    .error-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+    }
+
+    .error-content h2 {
+        font-size: 20px;
+    }
+}

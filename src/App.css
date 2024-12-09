@@ -1,552 +1,159 @@
-/* General Reset */
-body, html {
+/* App.css */
+:root {
+  --primary-color: #495E57;
+  --secondary-color: #F4CE14;
+  --text-color: #333333;
+  --background-light: #f9f9f9;
+  --background-white: #ffffff;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+}
+
+/* Reset & Global Styles */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Karla', sans-serif; /* Apply Karla font globally */
 }
 
-/* Navbar Styling */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 10px;
-  background-color: rgba(247, 246, 246, 0.8); /* Lighter background */
-  color: #333; /* Darker text for better contrast */
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 10;
-}
-
-.navbar .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.navbar .nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-
-.navbar .nav-links a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.navbar .nav-links a:hover {
-  color: #f4ce14;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.login-btn, .signup-btn {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.login-btn {
-  background-color: white;
-  color: #333;
-}
-
-.signup-btn {
-  background-color: #f4ce14;
-  color: white;
-}
-
-/* Hero Section Styling */
-.hero-section {
-  position: relative;
-  display: flex;
-  flex-direction: row; /* Align the content horizontally */
-  justify-content: flex-start;
-  align-items: flex-start;
-  background: linear-gradient(to bottom, #495e57 65%, white 30%); /* Gradient background */
-  color: white;
-  text-align: justify;
-  padding: 20px 10px; /* Padding around the content */
-  margin-top: 90px; /* Offset for navbar */
-  min-height: 500px; /* Ensure the section height is large enough */
-}
-
-.hero-content {
-  margin-left: 150px; /* Push the content from the left */
-  display: flex;
-  flex-direction: column; /* Stack the content vertically */
-  justify-content: flex-start;
-  align-items: flex-start;
-  z-index: 1; /* Keep content on top */
-}
-
-.hero-section img.hero-image {
-  position: absolute;
-  top: 0;
-  right: 0; /* Position the image on the right side */
-  margin-right: 160px;
-  margin-top: 75px; /* Offset from top */
-  width: 300px; /* Set image width */
-  height: auto; /* Let the image scale naturally */
-  object-fit: cover; /* Ensure the image covers the space without distortion */
-  z-index: 0; /* Image goes behind the text */
-  border-radius: 20px; /* Rounded corners */
-}
-
-.hero-content h1 {
-  margin-top: 0; /* Remove extra space above heading */
-  color: #F4CE14; /* Bright yellow color for the heading */
-  font-family: 'Markazi Text', serif; /* Use serif font */
-  font-size: 50pt; /* Large font size for the title */
-  margin-bottom: 5px; /* Reduce space below h1 */
-}
-
-.hero-content h2 {
-  color: black; /* Black color for the subheading */
-  font-family: 'Markazi Text', serif; /* Use the same serif font */
-  font-size: 20pt; /* Medium font size for the subheading */
-  margin-top: -20px; /* Adjust margin to remove unwanted space */
-  margin-bottom: 5px; /* Add some spacing between h2 and paragraph */
-}
-
-.hero-content p {
-  max-width: 450px; /* Limit the paragraph width */
-  color: black; /* Text color is black */
-  font-family: 'Karla', sans-serif; /* Use Karla sans-serif font */
-  font-size: 15pt; /* Medium font size for body text */
-}
-
-/* Updated Button Styling */
-.book-table-btn {
-  margin-top: 30px;
-  background-color: #F4CE14; /* Yellow background */
-  color: #0f0f0f; /* Dark text color */
-  border-radius: 50px; /* Rounded button */
-  padding: 15px 30px; /* Larger padding for the button */
-  font-size: 18px; /* Adjust font size */
-  font-family: 'Karla', sans-serif; /* Use Karla font for consistency */
-  text-transform: uppercase; /* Uppercase text for better readability */
-  border: none; /* Remove default button border */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
-
-/* Hover Effect */
-.book-table-btn:hover {
-  background-color: #d4b710; /* Darker yellow shade on hover */
-  color: white; /* Change text color to white */
-  transform: scale(1.1); /* Slightly enlarge the button on hover */
-}
-
-
-/* Specials Section Styling */
-.specials-section {
-  padding: 50px 20px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
-
-.specials-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px;
-  background-color: #fff;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-}
-
-.specials-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: #495e57;
-}
-
-.online-menu-btn {
-  background-color: #495e57;
-  color: #fff;
-  font-size: 1.2rem;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-bottom: 40px;
-}
-
-.online-menu-btn:hover {
-  background-color: #f4ce14;
-}
-
-/* Dish Box Styling */
-.dishes-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.dish-box {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  width: 23%;
-  overflow: hidden;
-  text-align: center;
-  padding: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dish-box img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.dish-box:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.dish-name {
-  font-size: 1.5rem;
-  color: #495e57;
-  margin: 10px 0;
-}
-
-.dish-description {
-  font-size: 1rem;
-  color: #777;
-  line-height: 1.5;
-  margin-top: 10px;
-}
-
-/* About Section */
-.about-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  background-color: #f9f9f9;
-}
-
-.about-content {
-  flex: 1;
-  text-align: left;
-  padding: 2rem;
-}
-
-.about-title {
-  font-size: 2.5rem;
-  color: #f4ce14;
-  margin-bottom: 0.5rem;
-}
-
-.about-location {
-  font-size: 1.5rem;
-  color: #495e57;
-  margin-bottom: 1.5rem;
-}
-
-.about-description {
-  font-size: 1rem;
-  color: #333;
+body {
+  font-family: 'Karla', sans-serif;
   line-height: 1.6;
-  min-width: 500px;
+  color: var(--text-color);
+  background-color: var(--background-light);
 }
 
-.about-images {
-  display: grid;
-  grid-template-rows: auto auto;
-  justify-items: center;
-  position: relative;
+/* App Container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.about-image {
-  width: 60%;
-  border-radius: 10px;
-  margin-right: -20pt;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding-top: 60px; /* Adjust based on navbar height */
 }
 
-/* Testimonials Section Styling */
-.testimonials-section {
-  padding: 2rem;
-  background-color: #f9f9f9;
+/* Error States */
+.error-boundary,
+.offline-message,
+.not-found {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  padding: 2rem;
 }
 
-.testimonials-section h2 {
+.error-boundary h2,
+.offline-message h2,
+.not-found h2 {
   font-size: 2rem;
-  color: #333;
+  color: var(--error-color);
   margin-bottom: 1rem;
 }
 
-.testimonials-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
+.error-boundary p,
+.offline-message p,
+.not-found p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
 }
 
-.testimonial-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  max-width: 300px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.feedback {
-  font-style: italic;
-  color: #555;
-}
-
-.customer {
-  font-weight: bold;
-  margin-top: 0.5rem;
-  color: #333;
-}
-
-.date {
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 0.25rem;
-}
-
-.star-rating {
-    display: flex;
-    margin-bottom: 10px; /* Space between stars and feedback */
-}
-
-.star {
-    font-size: 1.5em; /* Size of the stars */
-    color: #ccc; /* Default star color */
-}
-
-.star.filled {
-    color: #ffcc00; /* Color for filled stars */
-}
-
-/* General Reset */
-body, html {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Karla', sans-serif; /* Apply Karla font globally */
-}
-
-/* Navbar Styling */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 10px; /* Reduced padding for better space management */
-  background-color: rgba(247, 246, 246, 0.6); /* Transparent background with a slight black overlay */
+.reload-button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
   color: white;
-  position: fixed; /* Fix the navbar on top */
-  width: 100%;
-  top: 0;
-  z-index: 10; /* Ensure it's on top of other content */
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* Menu Section Styling */
-.menu-container {
-  font-family: 'Karla', sans-serif; /* Apply Karla font to the menu */
-  padding: 20px;
-  background-color: #f4f4f4;
-  max-width: 900px;
+.reload-button:hover {
+  background-color: #3d4f49;
+  transform: translateY(-2px);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  border-radius: 8px;
-  margin-top: 100px; /* Adjust to make sure the menu appears below the navbar */
+  padding: 0 20px;
 }
 
-.menu-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 10px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 50px;
+  }
+
+  .error-boundary h2,
+  .offline-message h2,
+  .not-found h2 {
+    font-size: 1.75rem;
+  }
+
+  .error-boundary p,
+  .offline-message p,
+  .not-found p {
+    font-size: 1rem;
+  }
 }
 
-.menu-description {
-  text-align: center;
-  color: #777;
-  margin-bottom: 30px;
-  font-size: 1rem;
+/* Add to your App.css */
+.offline-message,
+.not-found {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
 }
 
-.category-tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+.offline-content,
+.not-found-content {
+    text-align: center;
+    max-width: 500px;
+    padding: 40px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.category-tab {
-  background-color: #fff;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 1rem;
-  font-weight: bold;
+.offline-message h2,
+.not-found h2 {
+    font-size: 2rem;
+    color: #2e5c47;
+    margin-bottom: 16px;
 }
 
-.category-tab:hover {
-  background-color: #e1e1e1;
+.offline-message p,
+.not-found p {
+    color: #666;
+    font-size: 1.1rem;
 }
 
-.category-tab.active {
-  background-color: #3f88c5;
-  color: #fff;
-}
+@media (max-width: 480px) {
+    .offline-content,
+    .not-found-content {
+        padding: 24px;
+    }
 
-/* Menu items styling */
-.menu-items {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 0;
-}
+    .offline-message h2,
+    .not-found h2 {
+        font-size: 1.75rem;
+    }
 
-.menu-item {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.menu-item-name {
-  font-size: 1.4rem;
-  color: #333;
-  margin: 0;
-}
-
-.menu-item-description {
-  font-size: 1rem;
-  color: #777;
-  line-height: 1.5;
-  margin-top: 10px;
-}
-
-/* Optional: Menu Item Hover Effect */
-.menu-item:hover {
-  transform: scale(1.05); /* Slightly enlarge the item on hover */
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-  cursor: pointer;
-}
-
-/* General Styling for the menu tabs */
-.category-tab.active {
-  background-color: #495e57;
-  color: #fff;
-}
-
-.category-tab:hover {
-  background-color: #c8d7cc;
-}
-
-/* Footer Styling */
-.footer-content {
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center items horizontally */
-  max-width: 1200px; /* Keep the max width */
-  margin: 0 auto; /* Center the footer content */
-  padding: 20px; /* Add some padding */
-  margin-right: 8em;
-}
-
-.footer-logo-nav {
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Space between logo and text */
-  width: 100%; /* Take up full width */
-}
-
-.footer-logo {
-  margin-right: 20px; /* Add some space between the logo and text */
-}
-
-.footer-text {
-  flex: 1; /* Allow the text to take up remaining space */
-  text-align: center; /* Align text to the left */
-}
-
-.footer-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-nav li {
-  display: inline;
-  margin: 0 15px;
-}
-
-.footer-nav a {
-  font-size: 1.2em;
-  text-decoration: none;
-  color: #ee9972; /* Link color */
-}
-
-.footer-nav a:hover {
-  text-decoration: underline; /* Underline on hover */
-}
-
-.social-links {
-  margin: 15px 0;
-}
-
-.contact-info {
-  color: #ee9972;
-  font-size: 1.2em;
-}
-
-.contact-info a {
-  color: #ee9972; /* Set the desired color for the links */
-  text-decoration: none; /* Remove underline from links */
-}
-
-.contact-info a:hover {
-  color: #ee9980; /* Change color on hover for better visibility */
-  text-decoration: underline; /* Underline on hover */
-}
-
-/* Social Icons Styling */
-.social-link {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: 0 10px;
-  color: #ee9972; /* Icon color */
-  font-size: 2em; /* Increase the size of the icons */
-  padding: 10px; /* Add padding for better click area */
-  transition: color 0.3s, transform 0.3s; /* Smooth transition for color and scaling */
-}
-
-.social-link:hover {
-  color: #0f0f0f; /* Change color on hover */
-  transform: scale(1.1); /* Slightly increase the size of the icon on hover */
-}
-
-.footer-bottom {
-  font-size: 0.9em;
-  color: #6c757d; /* Muted text color */
-}
-
-.footer-logo-img {
-  width: 100px; /* Set the desired width */
-  height: auto; /* Maintain aspect ratio */
+    .offline-message p,
+    .not-found p {
+        font-size: 1rem;
+    }
 }
