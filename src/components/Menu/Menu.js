@@ -146,7 +146,7 @@ const Menu = () => {
       },
       {
         name: "Sprite",
-        description: "A crisp, lemon-lime soda with a refreshing taste.",
+        description: "A crips, lemon-lime soda with a refreshing taste.",
         price: "€2.49"
       },
       {
