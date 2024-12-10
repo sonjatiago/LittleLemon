@@ -1,0 +1,194 @@
+/* Menu.css */
+.menu-section {
+    padding: 80px 0;
+    background-color: #fafafa;
+    min-height: 100vh;
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header Styles */
+.menu-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.menu-title {
+    font-size: 2.5rem;
+    color: #2e5c47;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.menu-subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Category Navigation */
+.category-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    padding: 0 16px;
+}
+
+.category-button {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 30px;
+    font-weight: 500;
+    position: relative;
+}
+
+.category-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #2e5c47;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.category-button:hover {
+    color: #2e5c47;
+}
+
+.category-button.active {
+    background-color: #2e5c47;
+    color: white;
+}
+
+.category-button.active::after {
+    width: 100%;
+}
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 16px 0;
+}
+
+/* Menu Items */
+.menu-item {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.menu-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item-content {
+    padding: 24px;
+}
+
+.menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 16px;
+}
+
+.menu-item-name {
+    font-size: 1.25rem;
+    color: #333;
+    margin: 0;
+    font-weight: 600;
+    flex: 1;
+}
+
+.menu-item-price {
+    font-size: 1.125rem;
+    color: #2e5c47;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.menu-item-description {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-section {
+        padding: 60px 0;
+    }
+
+    .menu-title {
+        font-size: 2rem;
+    }
+
+    .menu-subtitle {
+        font-size: 1rem;
+        padding: 0 16px;
+    }
+
+    .category-navigation {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 16px;
+        margin: -8px -24px 32px;
+        padding: 8px 24px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .category-navigation::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-button {
+        white-space: nowrap;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-item {
+    animation: fadeIn 0.5s ease forwards;
+}
