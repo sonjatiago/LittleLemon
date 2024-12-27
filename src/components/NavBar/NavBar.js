@@ -1,7 +1,6 @@
-// components/NavBar/NavBar.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Using icons for better UX
+import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../../assets/logo.svg';
 import './NavBar.css';
 
@@ -33,7 +32,13 @@ const NavBar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         <Link to="/" className="logo" onClick={closeMenu}>
-          <img src={logo} alt="Little Lemon Logo" />
+          <img 
+            src={logo} 
+            alt="Little Lemon Logo" 
+            width="40" 
+            height="40"
+            loading="eager"
+          />
         </Link>
 
         <button 
@@ -41,18 +46,47 @@ const NavBar = () => {
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
+          aria-controls="navigation-menu"
         >
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
-        <div className={`nav-overlay ${isMenuOpen ? 'active' : ''}`} onClick={closeMenu} />
+        <div 
+          className={`nav-overlay ${isMenuOpen ? 'active' : ''}`} 
+          onClick={closeMenu}
+          aria-hidden="true"
+        />
 
-        <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-          <li><Link to="/menu" onClick={closeMenu}>Menu</Link></li>
-          <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-          <li><Link to="/reservations" onClick={closeMenu}>Reservations</Link></li>
-          <li><Link to="/login" onClick={closeMenu} className="login-button">Login</Link></li>
+        <ul 
+          id="navigation-menu"
+          className={`nav-links ${isMenuOpen ? 'active' : ''}`}
+          role="navigation"
+        >
+          <li>
+            <Link to="/" onClick={closeMenu}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/menu" onClick={closeMenu}>
+              Menu
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={closeMenu}>
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/reservations" onClick={closeMenu}>
+              Reservations
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" onClick={closeMenu}>
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

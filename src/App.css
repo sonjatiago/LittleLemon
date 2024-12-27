@@ -7,6 +7,8 @@
   --background-white: #ffffff;
   --error-color: #dc3545;
   --success-color: #28a745;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
 }
 
 /* Reset & Global Styles */
@@ -23,37 +25,60 @@ body {
   background-color: var(--background-light);
 }
 
-/* App Container */
+/* App Layout */
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  animation: fadeIn var(--transition-speed) ease-in forwards;
 }
 
-/* Main Content */
 .main-content {
   flex: 1;
-  padding-top: 60px; /* Adjust based on navbar height */
+  padding-top: 60px;
+  will-change: transform;
+  contain: content;
 }
 
-/* Error States */
+/* Error and Message Components */
 .error-boundary,
 .offline-message,
 .not-found {
-  min-height: 60vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 2rem;
+  background-color: var(--background-light);
 }
 
+.offline-content,
+.not-found-content,
+.error-content {
+  max-width: 500px;
+  padding: 40px;
+  background-color: var(--background-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  transform: translateY(0);
+  transition: transform var(--transition-speed) ease;
+}
+
+.offline-content:hover,
+.not-found-content:hover,
+.error-content:hover {
+  transform: translateY(-5px);
+}
+
+/* Typography */
 .error-boundary h2,
 .offline-message h2,
 .not-found h2 {
   font-size: 2rem;
-  color: var(--error-color);
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
@@ -65,15 +90,16 @@ body {
   margin-bottom: 2rem;
 }
 
+/* Buttons */
 .reload-button {
   padding: 12px 24px;
   background-color: var(--primary-color);
-  color: white;
+  color: var(--background-white);
   border: none;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-speed) ease;
 }
 
 .reload-button:hover {
@@ -88,7 +114,24 @@ body {
   padding: 0 20px;
 }
 
-/* Responsive Design */
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Performance Optimizations */
+.main-content > * {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+* {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
   .main-content {
     padding-top: 50px;
@@ -105,55 +148,41 @@ body {
   .not-found p {
     font-size: 1rem;
   }
-}
 
-/* Add to your App.css */
-.offline-message,
-.not-found {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-}
-
-.offline-content,
-.not-found-content {
-    text-align: center;
-    max-width: 500px;
-    padding: 40px;
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.offline-message h2,
-.not-found h2 {
-    font-size: 2rem;
-    color: #2e5c47;
-    margin-bottom: 16px;
-}
-
-.offline-message p,
-.not-found p {
-    color: #666;
-    font-size: 1.1rem;
+  .offline-content,
+  .not-found-content,
+  .error-content {
+    padding: 30px;
+  }
 }
 
 @media (max-width: 480px) {
-    .offline-content,
-    .not-found-content {
-        padding: 24px;
-    }
+  .offline-content,
+  .not-found-content,
+  .error-content {
+    padding: 24px;
+    margin: 0 16px;
+  }
 
-    .offline-message h2,
-    .not-found h2 {
-        font-size: 1.75rem;
-    }
+  .error-boundary h2,
+  .offline-message h2,
+  .not-found h2 {
+    font-size: 1.5rem;
+  }
 
-    .offline-message p,
-    .not-found p {
-        font-size: 1rem;
-    }
+  .reload-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .app-container {
+    display: block;
+  }
+
+  .main-content {
+    padding-top: 0;
+  }
 }
