@@ -1,13 +1,16 @@
-/* Specials.css */
+/* Main Section Layout */
 .specials-section {
-    padding: 80px 0;
+    padding: 120px 40px;
     background-color: #fafafa;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .specials-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 40px;
 }
 
 /* Header Styles */
@@ -15,7 +18,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 48px;
+    margin-bottom: 60px;
+    padding: 20px 0;
 }
 
 .specials-title {
@@ -23,30 +27,38 @@
     color: #2e5c47;
     margin: 0;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .menu-button {
-    padding: 14px 28px;
+    padding: 16px 32px;
     background-color: #2e5c47;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(46, 92, 71, 0.1);
 }
 
 .menu-button:hover {
     background-color: #25683e;
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(46, 92, 71, 0.15);
+}
+
+.menu-button:active {
+    transform: translateY(0);
 }
 
 /* Grid Layout */
 .specials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
+    gap: 40px;
+    padding: 20px 0;
 }
 
 /* Card Styles */
@@ -56,6 +68,8 @@
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .special-card:hover {
@@ -63,6 +77,7 @@
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* Card Image Styles */
 .card-image-container {
     position: relative;
     width: 100%;
@@ -97,15 +112,19 @@
     );
 }
 
+/* Card Content Styles */
 .card-content {
-    padding: 24px;
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .card-title {
@@ -113,6 +132,7 @@
     color: #333;
     margin: 0;
     font-weight: 600;
+    line-height: 1.3;
 }
 
 .card-price {
@@ -126,11 +146,12 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 24px;
+    flex: 1;
 }
 
 .order-button {
     width: 100%;
-    padding: 12px 0;
+    padding: 14px 0;
     background-color: #2e5c47;
     color: white;
     border: none;
@@ -139,27 +160,46 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(46, 92, 71, 0.1);
 }
 
 .order-button:hover {
     background-color: #25683e;
+    box-shadow: 0 6px 12px rgba(46, 92, 71, 0.15);
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .specials-section {
+        padding: 100px 30px;
+    }
+
+    .specials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
 @media (max-width: 768px) {
     .specials-section {
-        padding: 60px 0;
+        padding: 100px 30px;
+    }
+
+    .specials-container {
+        padding: 0 30px;
     }
 
     .specials-header {
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
         text-align: center;
-        margin-bottom: 32px;
+        margin-bottom: 50px;
+        padding: 30px 0;
     }
 
     .specials-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
     }
 
     .menu-button {
@@ -169,24 +209,93 @@
 
     .specials-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 40px;
+    }
+
+    .special-card {
+        margin: 0 20px;
+    }
+
+    .card-content {
+        padding: 30px;
     }
 }
 
 @media (max-width: 480px) {
     .specials-section {
-        padding: 40px 0;
+        padding: 80px 20px;
+    }
+
+    .specials-container {
+        padding: 0 20px;
+    }
+
+    .specials-header {
+        padding: 25px 0;
+        margin-bottom: 40px;
+    }
+
+    .specials-title {
+        font-size: 2rem;
+    }
+
+    .special-card {
+        margin: 0 10px;
+    }
+
+    .card-content {
+        padding: 25px;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-price {
+        font-size: 1.2rem;
+    }
+
+    .card-description {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    .order-button {
+        padding: 14px 0;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .specials-section {
+        padding: 60px 15px;
+    }
+
+    .specials-container {
+        padding: 0 15px;
+    }
+
+    .special-card {
+        margin: 0 5px;
     }
 
     .card-content {
         padding: 20px;
     }
 
+    .card-header {
+        margin-bottom: 15px;
+    }
+
     .card-title {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
 
     .card-price {
-        font-size: 1.125rem;
+        font-size: 1.1rem;
+    }
+
+    .card-description {
+        margin-bottom: 25px;
     }
 }

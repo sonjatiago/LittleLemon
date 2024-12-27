@@ -1,4 +1,3 @@
-/* App.css */
 :root {
   --primary-color: #495E57;
   --secondary-color: #F4CE14;
@@ -32,13 +31,6 @@ body {
   flex-direction: column;
   opacity: 0;
   animation: fadeIn var(--transition-speed) ease-in forwards;
-}
-
-.main-content {
-  flex: 1;
-  padding-top: 60px;
-  will-change: transform;
-  contain: content;
 }
 
 /* Error and Message Components */
@@ -121,41 +113,12 @@ body {
 }
 
 /* Performance Optimizations */
-.main-content > * {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
-}
-
 * {
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 /* Media Queries */
-@media (max-width: 768px) {
-  .main-content {
-    padding-top: 50px;
-  }
-
-  .error-boundary h2,
-  .offline-message h2,
-  .not-found h2 {
-    font-size: 1.75rem;
-  }
-
-  .error-boundary p,
-  .offline-message p,
-  .not-found p {
-    font-size: 1rem;
-  }
-
-  .offline-content,
-  .not-found-content,
-  .error-content {
-    padding: 30px;
-  }
-}
-
 @media (max-width: 480px) {
   .offline-content,
   .not-found-content,
@@ -180,9 +143,5 @@ body {
 @media print {
   .app-container {
     display: block;
-  }
-
-  .main-content {
-    padding-top: 0;
   }
 }

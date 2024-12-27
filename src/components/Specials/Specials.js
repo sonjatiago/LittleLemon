@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import brushetaImage from '../../assets/brusheta.jpg'; // or .png depending on which one you want to use
+import brushetaImage from '../../assets/brusheta.jpg'; 
 import greekSaladImage from '../../assets/greek-salad.jpg';
 import lemonDessertImage from '../../assets/lemon-dessert.jpg';
 import "./Specials.css";
